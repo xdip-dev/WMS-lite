@@ -1,25 +1,27 @@
-from flask import Flask
+from flask import Flask, request, send_file
+from flask_cors import CORS
+from werkzeug.utils import secure_filename
 import interaction as i
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
 
 @app.route("/linkboxloc",methods=['POST'])
 def linkboxloc():
+    dataRecieved = request.json 
+    return i.linkBoxToLocation(dataRecieved['barCodeBoxe'],dataRecieved['barcodeLocation'])
     
-    pass
 
 @app.route("/getlocation",methods=['POST'])
-def getlocation():
-    pass
+def getlocation(): 
+    data= i.getLocationArticle(request.json)
+    return data.to_json(orient='table')
 
-@app.route("/getqty",methods=['POST'])
+@app.route("/getqty",methods=['GET'])
 def getqty():
     pass
 
 
 if __name__=="__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port=5000)

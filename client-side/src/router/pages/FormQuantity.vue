@@ -1,8 +1,6 @@
 <template>
     <div>
-        <input />
-        <br/>
-        <button type="submit">go</button>
+Quantity
     </div>
 </template>
 

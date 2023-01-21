@@ -1,5 +1,7 @@
 import {createRouter, createWebHistory} from "vue-router";
-import Reception from "./pages/Reception.vue";
+import FormInsert from "./pages/FormInsert.vue";
+import FormLocation from "./pages/FormLocation.vue";
+import FormQuantity from "./pages/FormQuantity.vue";
 
 const router =  createRouter(
     {
@@ -7,7 +9,15 @@ const router =  createRouter(
     routes:[
         {
             path:'/',
-            component : Reception,
+            component : FormInsert,
+        },
+        {
+            path:'/location',
+            component : FormLocation,
+        },
+        {
+            path:'/quantity',
+            component : FormQuantity,
         },
     ]
     }
