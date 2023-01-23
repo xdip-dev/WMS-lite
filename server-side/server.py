@@ -8,19 +8,27 @@ CORS(app)
 
 
 @app.route("/linkboxloc",methods=['POST'])
-def linkboxloc():
+def link_box_loc():
     dataRecieved = request.json 
     return i.linkBoxToLocation(dataRecieved['barCodeBoxe'],dataRecieved['barcodeLocation'])
     
 
-@app.route("/getlocation",methods=['POST'])
-def getlocation(): 
-    data= i.getLocationArticle(request.json)
+@app.route("/getlocation",methods=['POST','GET'])
+def get_location():
+    if request.method == 'POST':
+        data= i.getLocationArticle(request.json)
+    else:
+        data=i.getLocationArticle('fake')
+    
     return data.to_json(orient='table')
 
-@app.route("/getqty",methods=['GET'])
-def getqty():
-    pass
+@app.route("/removestock",methods=['POST'])
+def remove_stock():
+    return i.removeBoxeFromLocation(request.json)
+
+@app.route("/getqty",methods=['POST'])
+def get_qty():
+    return i.getQuantityStored(request.json)
 
 
 if __name__=="__main__":

@@ -1,28 +1,16 @@
 <template>
     <div>
-        Location
-        <SimpleFormOneEntry />
-
+         <SimpleFormWithTable mainText="Location Boxes" route="/getlocation" placeholder="Reference Article" />
     </div>
 </template>
 
 <script>
-import SimpleFormOneEntry from '../component/SimpleFormOneEntry.vue';
-export default {
-    data() {
-        return {
-
-
+import SimpleFormWithTable from '../../components/SimpleFormWithTable.vue';
+    export default {
+        components:{
+         SimpleFormWithTable:SimpleFormWithTable
         }
-    },
-    methods: {
-
-    },
-    components: {
-        SimpleFormOneEntry: SimpleFormOneEntry
     }
-
-}
 </script>
 
 <style scoped>

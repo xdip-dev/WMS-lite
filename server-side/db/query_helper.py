@@ -3,6 +3,7 @@ import repackage
 repackage.up()
 import helper
 
+
 conn=sqlite3.connect(helper.pathGeneratorMainToFile(['server-side','db','wms.db']), check_same_thread=False)
 cursor=conn.cursor()
 
@@ -39,6 +40,15 @@ def selectTableFilteredOnAColumn(table,column,data,only_one=False):
         return getData.fetchone()
     else:
         return getData.fetchall()
+
+def deletedROWID(table,column,filter_deletion):
+
+    query = f'''DELETE FROM {table} WHERE ROWID IN
+                    ( SELECT t.ROWID FROM {table} as t WHERE t.{column} = '{filter_deletion}' );
+            '''
+    cursor.execute(query)
+    conn.commit()
+    return True
 
 
 

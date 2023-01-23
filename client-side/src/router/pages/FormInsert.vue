@@ -9,12 +9,13 @@
         <p>
             <input v-model='barcodeLocation' type="text" placeholder="Scan location" />
         </p>
-        <button :disabled="disable" @click="submitData">Link !</button>
+        <Button :disabled="disable" @click="submitData" text="Link !" />
     </div>
 </template>
 
 <script>
 import axios from 'axios';
+import Button from '../../components/Button.vue';
 import { ref } from 'vue';
 export default {
     data() {
@@ -58,6 +59,9 @@ export default {
 
 
         }
+    },
+    components:{
+        Button:Button
     }
 
 }
