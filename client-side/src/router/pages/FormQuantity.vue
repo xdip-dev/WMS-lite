@@ -1,6 +1,6 @@
 <template>
     <div>
-        <SimpleFormGetData mainText="Quantity Boxes" route="/getqty" placeholder="Reference Article"/>
+        <SimpleFormGetData mainText="Article quantity in stock" route="/getqty" placeholder="Reference Article"/>
     </div>
 </template>
 

@@ -1,6 +1,6 @@
 <template>
     <div>
-         <SimpleFormWithTable mainText="Location Boxes" route="/getlocation" placeholder="Reference Article" />
+         <SimpleFormWithTable mainText="Location article per reference" route="/getlocation" placeholder="Reference Article" />
     </div>
 </template>
 

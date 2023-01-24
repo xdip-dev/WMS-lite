@@ -1,34 +1,36 @@
 from flask import Flask, request, send_file
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-import interaction as i
+from interaction import Interaction
 
 app = Flask(__name__)
 CORS(app)
+
+interaction=Interaction()
 
 
 @app.route("/linkboxloc",methods=['POST'])
 def link_box_loc():
     dataRecieved = request.json 
-    return i.linkBoxToLocation(dataRecieved['barCodeBoxe'],dataRecieved['barcodeLocation'])
-    
+    return interaction.linkBoxToLocation(dataRecieved['barCodeBoxe'],dataRecieved['barcodeLocation'])
+
 
 @app.route("/getlocation",methods=['POST','GET'])
 def get_location():
     if request.method == 'POST':
-        data= i.getLocationArticle(request.json)
+        data= interaction.getLocationArticle(request.json)
     else:
-        data=i.getLocationArticle('fake')
+        data=interaction.getLocationArticle('fake')
     
     return data.to_json(orient='table')
 
 @app.route("/removestock",methods=['POST'])
 def remove_stock():
-    return i.removeBoxeFromLocation(request.json)
+    return interaction.removeBoxeFromLocation(request.json)
 
 @app.route("/getqty",methods=['POST'])
 def get_qty():
-    return i.getQuantityStored(request.json)
+    return interaction.getQuantityStored(request.json)
 
 
 if __name__=="__main__":
