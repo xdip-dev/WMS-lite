@@ -2,6 +2,8 @@ import pandas as pd
 from db.query_helper import SqlDataBase
 
 
+
+
 class Interaction(SqlDataBase):
     def __init__(self) -> None:
         super().__init__()

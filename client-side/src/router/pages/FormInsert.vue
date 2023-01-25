@@ -40,7 +40,8 @@ export default {
 
             // Send data to the server in a JSON format
             axios.post("http://localhost:5000/linkboxloc", this.payload, {
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                            "Access-Control-Allow-Origin": "*" },
             })
                 .then(response => {
                     console.log(response)
