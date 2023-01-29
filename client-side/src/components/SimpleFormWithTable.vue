@@ -66,7 +66,8 @@ export default {
         },
         getData(){
             axios.post(getPostPath(this.route), this.reference.toUpperCase(), {
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 'Content-Type': 'application/json',
+                            "Access-Control-Allow-Origin": "*" },
             })
                 .then(response => {
                     this.showTable=true;

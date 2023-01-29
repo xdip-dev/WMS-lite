@@ -11,8 +11,6 @@ load_dotenv(find_dotenv(helper.pathGeneratorMainToFile(["server-side", ".env"]))
 
 
 
-
-
 class SetupDB(Tableinformation):
     def __init__(self) -> None:
         super().__init__()
@@ -23,7 +21,8 @@ class SetupDB(Tableinformation):
         with psycopg2.connect(self.connectionString) as conn:
             with conn.cursor() as cur:
                 cur.execute(
-                    f"""CREATE TABLE {self.t_article['name']} ( 
+                    f"""
+                    CREATE TABLE {self.t_article['name']} ( 
                             {self.t_article['reference']} TEXT NOT NULL, 
                             {self.t_article['description']} TEXT, 
                             {self.t_article['status']} TEXT, 
@@ -49,6 +48,26 @@ class SetupDB(Tableinformation):
                             {self.t_link_boxe_loc['status']}	TEXT,
                             PRIMARY KEY(id)
                         );
+                        CREATE or REPLACE view article_loc as
+                            SELECT 
+                                a.{self.t_article['reference']},
+                                a.{self.t_article['description']},
+                                l.{self.t_location['rack']} ,
+                                l.{self.t_location['row']} ,
+                                l.{self.t_location['col']}
+                            FROM {self.t_article['name']} as a
+                            LEFT JOIN {self.t_boxe_link_article['name']} as b on
+                                 b.{self.t_boxe_link_article['refArticle']}=a.{self.t_article['reference']}
+                            LEFT JOIN {self.t_link_boxe_loc['name']} as bl on
+                                 bl.{self.t_link_boxe_loc['barecodeBoxe']} =b.{self.t_boxe_link_article['barecodeBoxe']} 
+                            LEFT JOIN {self.t_location['name']} as l on
+                                 l.{self.t_location['barecodeLocation']} =bl.{self.t_link_boxe_loc['barecodeLocation']} 
+                            WHERE l.{self.t_location['rack']} <>'';
                     """
                 )
             conn.commit()
+
+
+if __name__=='__main__':
+    setup=SetupDB()
+    setup.creationAllTables()

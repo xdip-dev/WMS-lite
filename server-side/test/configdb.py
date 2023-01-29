@@ -1,15 +1,15 @@
-import pytest
 import psycopg2
 import os
-
 from dotenv import load_dotenv, find_dotenv
+import pytest
+
 import repackage
 repackage.up()
 import helper
 from db.tableInfo import Tableinformation
-import db.query_helper as db
 
 load_dotenv(find_dotenv(helper.pathGeneratorMainToFile(["server-side", ".env"])))
+
 
 @pytest.fixture(scope='module')
 def cnxn():

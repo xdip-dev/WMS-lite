@@ -1,4 +1,6 @@
 class Tableinformation:
+    ''' regroupe all the information of the table name and column 
+    t_ for table and v_ for view'''
     t_article = {
         "name": "article",
         "reference": "ref_article",
@@ -26,4 +28,16 @@ class Tableinformation:
         "barecodeBoxe": "barcode_boxe",
         "barecodeLocation": "barcode_loc",
         "status": "status",
+    }
+
+    t_test={
+        "name":'test',
+        'num':'num',
+        'data':'data'
+    }
+
+    v_article_loc={
+        'name':'article_loc ',
+        "reference": "ref_article",
+        "description": "des_article"
     }

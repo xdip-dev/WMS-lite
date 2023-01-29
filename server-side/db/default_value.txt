@@ -1,0 +1,25 @@
+import tableInfo
+t=tableInfo.Tableinformation()
+insertIntoTable(table=t.t_location,values=[
+    ['XX001','A',1,1],
+    ['XX002','A',2,1],
+    ['XX003','A',3,1],
+    ['XX004','A',1,2],
+    ['XX005','A',2,2],
+    ['XX006','A',3,2]
+    ])
+
+insertIntoTable(table=t.t_boxe_link_article,values=[
+    ['YY001','J301',5],
+    ['YY002','J301',5],
+    ['YY003','J301',5],
+    ['YY004','J302',1],
+    ['YY005','J302',1],
+    ['YY006','J303',10]
+    ])
+
+insertIntoTable(table=t.t_article,values=[
+    ['J301','des J301','actif'],
+    ['J302','des J302','actif'],
+    ['J303','des J303','actif']
+    ])
